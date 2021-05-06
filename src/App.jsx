@@ -61,3 +61,74 @@ const App = () => {
 
 export default App;
 /* 親コンポーネントに受け渡している */
+
+
+/* 以下memo、useCallbackに関するコード */
+import { useState, useCallback } from "react";
+import { ChildArea } from "./ChildArea"
+import "./styles.css";
+
+export default function App() {
+
+
+  const [text, setText] = useState('');
+  const [open, setOpen] = useState(false);
+
+  const onChangeText = (e) => setText(e.target.value);
+  const onClickOpen = () => setOpen(!open);
+
+  /* 子コンポーネントに対し関数を与えているためmemo化している */
+  const onClickClose = useCallback(() => setOpen(false), [setOpen]);
+
+
+  return (
+    <div className="App">
+      <input value={text} onChange={onChangeText} />
+      <br />
+      <br />
+      <button onClick={onClickOpen}>表示</button>
+      <ChildArea open={open} onClickClose={onClickClose} />
+    </div>
+  );
+}
+
+
+/* 以下React Routerに関するコード */
+import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
+/* importで上記の設定は必須 */
+
+import { Home } from "./Home";
+import { Page1 } from "./Page1";
+import { Page2 } from "./Page2";
+import "./styles.css";
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <div className="App">
+        <Link to="/">Home</Link>
+        {/* Link to でパスを指定し、Routeで使用 */}
+        <br />
+        <Link to="/page1">Page1</Link>
+        <br />
+        <Link to="/page2">Page2</Link>
+        <br />
+      </div>
+
+      <Switch>
+        <Route exact path="/">
+          {/* exactをつけないと最初のパスが繰り返しレンダリングされてしまうので注意。パス以降は上記Link toと揃える。 */}
+          <Home />
+          {/* 出したいコンポーネントを記載 */}
+        </Route>
+        <Route path="/page1">
+          <Page1 />
+        </Route>
+        <Route path="/page2">
+          <Page2 />
+        </Route>
+      </Switch>
+
+    </BrowserRouter>
+  );
+}
