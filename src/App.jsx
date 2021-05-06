@@ -132,3 +132,24 @@ export default function App() {
     </BrowserRouter>
   );
 }
+
+/* ネストに対する応用的な書き方 */
+<Route
+  path="/page1"
+  /* renderで引数にアロー関数でreturnの複数中身を受け取ることができる。
+  上記ではpropsを受け取っている。page1の記載をmatch: urlで共通記載できる。*/
+
+  render={({ match: { url } }) => (
+    <Switch>
+      <Route exact path={url}>
+        <Page1 />
+      </Route>
+      <Route path={`${url}/detailA`}>
+        <Page1DetailA />
+      </Route>
+      <Route path={`${url}/detailB`}>
+        <Page1DetailB />
+      </Route>
+    </Switch>
+  )}
+/>

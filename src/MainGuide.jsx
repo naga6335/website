@@ -49,6 +49,6 @@ React Router
 => import { BrowserRouter, Link, Switch, Route } from "react-router-dom";をimportし
   リンクさせたいコンポーネントに<BrowserRouter>　→　<Link to = "">　→　<Switch>　→　<Route path = "">の順で囲む。
 
-  ネストの場合
-
+ネストの場合
+=> <Route path="" render {({ match: {url} }) => ()} />で表現できる。詳細はApp.jsxに。
 */
