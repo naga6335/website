@@ -12,6 +12,10 @@ export const Router = () => {
       <Route exact path="/">
         <Home />
       </Route>
+
+      {/* Routeの中のネストを別ファイルに切り出している。
+      Routeの配列設定を書きRouteの中でループして表示していく。
+      exact path componentの違いをメインに設定。*/}
       <Route
         path="/page1"
         render={({ match: { url } }) => (
@@ -28,9 +32,22 @@ export const Router = () => {
           </Switch>
         )}
       />
-      <Route path="/page2">
-        <Page2 />
-      </Route>
+      <Route
+        path="/page2"
+        render={({ match: { url } }) => (
+          <Switch>
+            {page2Routes.map((route) => (
+              <Route
+                key={route.path}
+                exact={route.exact}
+                path={`${url}${route.path}`}
+              >
+                {route.children}
+              </Route>
+            ))}
+          </Switch>
+        )}
+      />
     </Switch>
   )
 }

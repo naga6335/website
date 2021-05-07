@@ -114,42 +114,8 @@ export default function App() {
         <Link to="/page2">Page2</Link>
         <br />
       </div>
-
-      <Switch>
-        <Route exact path="/">
-          {/* exactをつけないと最初のパスが繰り返しレンダリングされてしまうので注意。パス以降は上記Link toと揃える。 */}
-          <Home />
-          {/* 出したいコンポーネントを記載 */}
-        </Route>
-        <Route path="/page1">
-          <Page1 />
-        </Route>
-        <Route path="/page2">
-          <Page2 />
-        </Route>
-      </Switch>
-
+      {/* 下記Routerでネストのルーティングを切りだし見通しをよくしている。 */}
+      <Router />
     </BrowserRouter>
   );
 }
-
-/* ネストに対する応用的な書き方 */
-<Route
-  path="/page1"
-  /* renderで引数にアロー関数でreturnの複数中身を受け取ることができる。
-  上記ではpropsを受け取っている。page1の記載をmatch: urlで共通記載できる。*/
-
-  render={({ match: { url } }) => (
-    <Switch>
-      <Route exact path={url}>
-        <Page1 />
-      </Route>
-      <Route path={`${url}/detailA`}>
-        <Page1DetailA />
-      </Route>
-      <Route path={`${url}/detailB`}>
-        <Page1DetailB />
-      </Route>
-    </Switch>
-  )}
-/>
