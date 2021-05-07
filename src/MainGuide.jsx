@@ -34,7 +34,8 @@ useCallback
    子コンポーネントでmemo化していても、親コンポーネントで使い回す指示を与えなければいけない。
    子コンポーネントのメモ化とそこに関数を与える場合、関数のメモ化もし組み合わせる必要がある。
 
-ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+ーーーーーーーーーーーーーーーーーーーーー　styleに関して　ーーーーーーーーーーーーーーーーーーーーーーーーー
 styled-components
 => import styled from 'styled-components';で
    const Container = styled.div`
@@ -46,7 +47,8 @@ styled-components
    <Container>----</Container>
    のようにスタイルをsass方式でも当てることが可能。メインで使える。
 
-ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+ーーーーーーーーーーーーーーーーーーーーー　画面遷移に関して　ーーーーーーーーーーーーーーーーーーーーーーーーーー
 React Router
 => import { BrowserRouter, Link, Switch, Route } from "react-router-dom";をimportし
   リンクさせたいコンポーネントに<BrowserRouter>　→　<Link to = "">　→　<Switch>　→　<Route path = "">の順で囲む。
@@ -72,5 +74,25 @@ useHistory Linkを使わないページ遷移
 =>　button等に割り当てても使える。詳細の挙動はPage1.jsx確認。
     push("redirect先"),goBack("")をアロー関数で指定し、onClickに割り当てる。
 
-ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+ーーーーーーーーーーーーーーーーーーー　コンポーネントの分割に関して　ーーーーーーーーーーーーーーーーーーーーーーーー
+
+Atomic Design
+画面要素を ATOMS, MOLECULES, ORGANISMS, TEMPLATES, PAGESの5段階に分け組み合わせることでUIを実現
+コンポーネント化された要素が画面を構成しているという考え。React,Vue用というわけではない
+
+Atoms...ボタン、アイコン、テキストボックスなど　最も小さいパーツ
+Molecules...Atomの組み合わせで意味を持つデザインパーツ アイコン＋メニュー名、プロフィール画像＋テキストボックス等
+Organisms...AtomやMoleculeの組み合わせ。単位である程度の意味を持つ要素。ツイート入力エリアやヘッダーメニューバー等
+Templates...ページレイアウトのみ表現する要素(実際のデータを持たない)
+Pages...最終的に表示される1画面
+
+ex)atoms
+    components/atoms/button/~~~~.jsxで部品化する。 (props) => {
+      const {children} = props;
+      return ( <SButton>{ children }</SButton>)
+    };　のように分割代入することで使い回しができる。
+    styleベタがき、切り出してstyle.button``,(BaseButton)``でスタイリングもできる。
+他,components/src/atoms,components/src/molecules,components/src/organismを参照
+
 */

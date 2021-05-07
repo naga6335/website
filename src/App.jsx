@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 
+
 /* exportされたコンポーネントをjsx記法で受け取っている */
 import { ColorfulMessage } from "./components/ColorfulMessage";
 
@@ -22,6 +23,7 @@ const App = () => {
   const onClickSwitchShowFlag = () => {
     setSwitchShowFlag(!switchShowFlag)
   }
+
 
 
   /* useEffectで関心を分離している */
@@ -59,8 +61,7 @@ const App = () => {
   );
 };
 
-export default App;
-/* 親コンポーネントに受け渡している */
+
 
 
 /* 以下memo、useCallbackに関するコード */
@@ -93,6 +94,7 @@ export default function App() {
 }
 
 
+
 /* 以下React Routerに関するコード */
 import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
 /* importで上記の設定は必須 */
@@ -117,5 +119,40 @@ export default function App() {
       {/* 下記Routerでネストのルーティングを切りだし見通しをよくしている。 */}
       <Router />
     </BrowserRouter>
+  );
+}
+
+
+
+/* ーーーーーーーーーーーー　Atomic-designに基づいた親コンポーネント例 ーーーーーーーーーーーー　*/
+import { PrimaryButton } from "./components/atoms/button/PrimaryButton";
+import { SecondaryButton } from "./components/atoms/button/SecondaryButton";
+import { SearchInput } from "./components/molecules/SearchInput";
+import { UserCard } from "./components/organisms/user/UserCard";
+import "./styles.css";
+
+
+/* 親コンポーネントからこコンポーネントへpropsで情報を受け渡している。 */
+const user = {
+  name: "nobu",
+  image: "https://source.unsplash.com/NE0XGVKTmcA",
+  email: "example@example.com",
+  phone: "000-0000-0000",
+  company: {
+    name: "テスト株式会社"
+  },
+  website: "https//google.com",
+};
+
+export default function App() {
+  return (
+    <div className="App">
+      <PrimaryButton>テスト</PrimaryButton>
+      <SecondaryButton>検索</SecondaryButton>
+      <br />
+      <SearchInput />
+      <UserCard user={user} />
+      {/* user変数の中身のオブジェクトをuserに渡している。 */}
+    </div>
   );
 }
