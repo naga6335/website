@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { UserContext } from "../../../providers/UserProvider";
 
-export const UserIconWithName = (props) => {
+export const UserIconWithName = memo((props) => {
+  /* memo化でUsersの切り替えボタンが押された際の再レンダリングを制御している。 */
   const { image, name } = props;
   const { userInfo } = useContext(UserContext);
   /* Providerから値を直接参照できるようになっている。useContextの引数に参照したい値の変数名を入れると値が取得できる。 */
@@ -16,7 +17,7 @@ export const UserIconWithName = (props) => {
       {isAdmin && <SEdit>編集</SEdit>}
     </SContainer>
   );
-};
+});
 
 const SContainer = styled.div`
   text-align: center;

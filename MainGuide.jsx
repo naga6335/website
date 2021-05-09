@@ -104,6 +104,14 @@ ex)atoms
 
 Contextでのstate管理
   providersフォルダを作成 => import { createContext } from "react";
-  詳細は上記フォルダ内。<~~~.Provider value={{  }}>先オブジェクト内に入れた値が
-  上記jsxタグで囲った中身でも参照できるようになる。
+  詳細は上記フォルダ内。useStateで定義した関数、set関数を
+  <~~~.Provider value={{ , }}>左記オブジェクト内に入れた値が他ファイルで使える。
+  適用したいコンポーネントにconst {~~~} = useContext(関数);で定義し
+  set関数に処理を加えることで値の変化に応じた処理が可能。
+
+  contextを用いる場合はどのコンポーネントが再レンダリングされるのかを確認し
+  memo()化をすることで余計な呼び出しを防げる。設計時にconsole.log("")で確認しながら重複を避ける。
+
+  Recoilライブラリでグローバルなstate管理も簡単に可能。
+  少ない記述、useSetRecoilStateで更新関数のみ受け取ることで、勝手に不要な再レンダリングを制御してくれる。
 */

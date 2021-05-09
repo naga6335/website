@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { Card } from "../../atoms/card/Card";
 import { UserIconWithName } from "../../molecules/user/UserIconWithName";
 
-export const UserCard = (props) => {
+export const UserCard = memo((props) => {
+  /* memo化でUsersの切り替えボタンが押された際の再レンダリングを制御している。 */
   const { user } = props;
   return (
     <Card>
@@ -19,7 +20,7 @@ export const UserCard = (props) => {
       </SDL>
     </Card>
   );
-};
+});
 
 const SDL = styled.dl`
   text-align: left;

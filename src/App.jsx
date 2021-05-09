@@ -165,7 +165,7 @@ import "./styles.css";
 
 export default function App() {
   return (
-    /*  */
+    /* グローバールStateの対象を囲む */
     <UserProvider>
       <Router />
     </UserProvider>
