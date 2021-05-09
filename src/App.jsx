@@ -156,3 +156,19 @@ export default function App() {
     </div>
   );
 }
+
+
+/* ーーーーーーーーーーーー　createContextによるグローバルなstate管理 ーーーーーーーーーーーー　*/
+import { UserProvider } from "./providers/UserProvider";
+import { Router } from "./router/Router";
+import "./styles.css";
+
+export default function App() {
+  return (
+    /*  */
+    <UserProvider>
+      <Router />
+    </UserProvider>
+  );
+  ;
+}

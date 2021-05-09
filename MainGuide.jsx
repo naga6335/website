@@ -88,16 +88,22 @@ Templates...ページレイアウトのみ表現する要素(実際のデータ�
 Pages...最終的に表示される1画面
 
 ex)atoms
-    components/atoms/button/~~~~.jsxで部品化する。 (props) => {
-      const {children} = props;
-      return ( <SButton>{ children }</SButton>)
-    };　のように分割代入することで使い回しができる。
-    styleベタがき、切り出してstyle.button``,(BaseButton)``でスタイリングもできる。
-他,components/src/atoms,components/src/molecules,components/src/organism,components/src/pagesを参照
+  components/atoms/button/~~~~.jsxで部品化する。 (props) => {
+    const {children} = props;
+    return ( <SButton>{ children }</SButton>)
+  };　のように分割代入することで使い回しができる。
+  styleベタがき、切り出してstyle.button``,(BaseButton)``でスタイリングもできる。
+  components/src/atoms
+  components/src/molecules
+  components/src/organism
+  components/src/templates
+  components/src/pagesを参照
 
 
 ーーーーーーーーーーーーーーーーーーー　グローバルなstate管理について　ーーーーーーーーーーーーーーーーーーーーーーーー
 
-
-
+Contextでのstate管理
+  providersフォルダを作成 => import { createContext } from "react";
+  詳細は上記フォルダ内。<~~~.Provider value={{  }}>先オブジェクト内に入れた値が
+  上記jsxタグで囲った中身でも参照できるようになる。
 */
