@@ -93,6 +93,11 @@ ex)atoms
       return ( <SButton>{ children }</SButton>)
     };　のように分割代入することで使い回しができる。
     styleベタがき、切り出してstyle.button``,(BaseButton)``でスタイリングもできる。
-他,components/src/atoms,components/src/molecules,components/src/organismを参照
+他,components/src/atoms,components/src/molecules,components/src/organism,components/src/pagesを参照
+
+
+ーーーーーーーーーーーーーーーーーーー　グローバルなstate管理について　ーーーーーーーーーーーーーーーーーーーーーーーー
+
+
 
 */
