@@ -9,8 +9,9 @@ let num: number = 0;
 // string
 let str: string = "A";
 
-// Array 配列
+// Array 配列　map関数と合わせてよく使う。
 let arr1: Array<number> = [0, 1, 2];
+
 
 // tuple
 let tuple: [number, string] = [0, "A"];
@@ -34,3 +35,12 @@ let obj1: object = {};
 let obj2: { id: number, name: string } = { id: 0, name: "AAA" };
 
 /* tsconfigで設定可能 strictモードの解除など */
+
+
+/* 別ファイルに切り出してインポートしながら使う。　ex) /types/todo.tsx*/
+export type TodoType = {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+};
