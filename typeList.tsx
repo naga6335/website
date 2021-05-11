@@ -35,12 +35,3 @@ let obj1: object = {};
 let obj2: { id: number, name: string } = { id: 0, name: "AAA" };
 
 /* tsconfigで設定可能 strictモードの解除など */
-
-
-/* 別ファイルに切り出してインポートしながら使う。　ex) /types/todo.tsx*/
-export type TodoType = {
-  userId: number;
-  id: number;
-  title: string;
-  completed: boolean;
-};
