@@ -6,6 +6,7 @@ const style = {
   backgroundColor: "skyblue",
 }
 
+/* ChildAreaに対し再レンダリングをmemo化によって回避している */
 export const ChildArea = memo((props) => {
 
   const { open, onClickClose } = props;

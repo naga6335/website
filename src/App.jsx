@@ -78,9 +78,7 @@ export default function App() {
   const onChangeText = (e) => setText(e.target.value);
   const onClickOpen = () => setOpen(!open);
 
-  /* 子コンポーネントに対し関数を与えているためmemo化している */
   const onClickClose = useCallback(() => setOpen(false), [setOpen]);
-
 
   return (
     <div className="App">
